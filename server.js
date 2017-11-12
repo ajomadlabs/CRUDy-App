@@ -25,7 +25,7 @@ mongoClient.connect(db.url, (err, database) => {
     
     // Importing the Routes
 
-    require('./app/routes')(app, {});
+    require('./app/routes')(app, database);
 
     app.listen(port, () => {
         
