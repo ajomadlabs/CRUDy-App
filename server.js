@@ -12,6 +12,10 @@ const app = express();
 
 const port = 8081;
 
+// Importing the Routes
+
+require('./app/routes')(app, {});
+
 app.listen(port, () => {
 
     console.log('Server Started on ' + port);
