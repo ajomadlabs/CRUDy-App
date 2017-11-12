@@ -3,6 +3,43 @@ var ObjectID = require('mongodb').ObjectID;
 
 module.exports = function(app, db) {
 
+    // Route for Creating a Note
+    // Test this using POSTMAN
+    // During testing send a request to localhost:8081/notes
+    // Check if you get a response 'Hello, You just Created a Note'
+    // if success then the route is functioning
+    // else check your code again
+
+    app.post('/notes', (req, res) => {
+        
+        // Create a Note Here
+        const note = {
+
+            text: req.body.text,
+            title: req.body.title
+
+        };
+        
+        db.collection('notes').insert(note, (err, result) => {
+
+            if (err) {
+
+                res.send({
+
+                    'error': 'An error has occurred'
+                });
+            }
+
+            else {
+
+                res.send(result.ops[0]);
+
+            }
+
+        });
+
+    });
+
     // Route for Reading Data
     // Collect the id of Data from URL
 
@@ -25,43 +62,6 @@ module.exports = function(app, db) {
             else {
 
                 res.send(item);
-
-            }
-
-        });
-
-    });
-
-    // Route for Creating a Note
-    // Test this using POSTMAN
-    // During testing send a request to localhost:8081/notes
-    // Check if you get a response 'Hello, You just Created a Note'
-    // if success then the route is functioning
-    // else check your code again
-
-    app.post('/notes', (req, res) => {
-
-        // Create a Note Here
-        const note = {
-
-            text: req.body.text,
-            title: req.body.title
-
-        };
-        
-        db.collection('notes').insert(note, (err, result) => {
-
-            if (err) {
-
-                res.send({
-
-                    'error': 'An error has occurred'
-                });
-            }
-
-            else {
-
-                res.send(result.ops[0]);
 
             }
 
@@ -94,6 +94,38 @@ module.exports = function(app, db) {
 
                 res.send('Note' + id + 'deleted');
         
+            }
+
+        });
+
+    });
+
+    // Update Route
+    // Update items for a given id
+
+    app.put('/notes/:id', (req, res) => {
+
+        const id = req.params.id;
+        const details = {'_id': new ObjectID(id)};
+        const note = {
+
+            text: req.body.text,
+            title: req.body.title
+
+        };
+
+        db.collection('notes').update(details, (err, result) => {
+
+            if (err) {
+
+                res.send({'error': 'An error has occurred'});
+
+            }
+
+            else {
+
+                res.send(note);
+            
             }
 
         });
