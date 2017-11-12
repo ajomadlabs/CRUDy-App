@@ -1,0 +1,32 @@
+{
+  "name": "crudy-app",
+  "version": "1.0.0",
+  "description": "A simple backend for app like Google Keep",
+  "main": "index.js",
+  "scripts": {
+    "test": "testme",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajomadlabs/CRUDy-App.git"
+  },
+  "keywords": [
+    "Googlekeep",
+    "CRUD"
+  ],
+  "author": "Ajo John",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/ajomadlabs/CRUDy-App/issues"
+  },
+  "homepage": "https://github.com/ajomadlabs/CRUDy-App#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongodb": "^2.2.33"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}
